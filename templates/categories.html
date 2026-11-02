@@ -1,0 +1,281 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ quiz_title|default:"Quizzy" }} | Explore</title>
+    <link rel="stylesheet" href="{% static 'css/quiz.css' %}">
+</head>
+<body>
+
+<input type="checkbox" id="theme-toggle" class="theme-toggle">
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <a href="{% url 'quiz:categories' %}" class="brand">
+            <span class="brand-icon">q.</span>
+            <span>quizzy<span class="brand-dot">.</span></span>
+        </a>
+
+        <p class="sidebar-caption">YOUR LEARNING SPACE</p>
+
+        <nav class="navigation">
+            <a href="{% url 'quiz:categories' %}" class="nav-item active">
+                <span class="nav-symbol">⌂</span>
+                <span>Explore quizzes</span>
+                <span class="nav-arrow">↗</span>
+            </a>
+
+            <a href="#how-to-play" class="nav-item">
+                <span class="nav-symbol">ⓘ</span>
+                <span>How to play</span>
+            </a>
+
+            <a href="#categories" class="nav-item">
+                <span class="nav-symbol">▦</span>
+                <span>All categories</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-note">
+            <span class="note-icon">✳</span>
+            <p class="note-label">A LITTLE REMINDER</p>
+            <h3>Progress beats perfection.</h3>
+            <p>One question at a time. You're getting better every day.</p>
+            <div class="note-decoration">KEEP GOING ↗</div>
+        </div>
+
+        <div class="sidebar-bottom">
+            <span class="sidebar-status"></span>
+            <span>Made for curious minds</span>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header class="topbar">
+            <div class="breadcrumb">
+                <span>Workspace</span>
+                <span class="breadcrumb-slash">/</span>
+                <strong>Explore</strong>
+            </div>
+
+            <div class="topbar-actions">
+                <span class="welcome-text">Ready to learn something?</span>
+
+                <label for="theme-toggle" class="theme-switch">
+                    <span class="theme-icon sun">☀</span>
+                    <span class="theme-icon moon">☾</span>
+                    <span class="switch-track">
+                        <span class="switch-thumb"></span>
+                    </span>
+                    <span class="theme-label">Theme</span>
+                </label>
+
+                <div class="profile-avatar">Q</div>
+            </div>
+        </header>
+
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="eyebrow">
+                    <span class="eyebrow-dot"></span>
+                    YOUR DAILY DOSE OF CURIOSITY
+                </div>
+
+                <h1>
+                    Don't just scroll.<br>
+                    <span>Challenge</span> your mind.
+                </h1>
+
+                <p class="hero-description">
+                    Big knowledge starts with small questions.
+                    Pick a topic, trust your instincts, and see how far you go.
+                </p>
+
+                <a href="#categories" class="primary-button">
+                    Find your next quiz <span>↗</span>
+                </a>
+
+                <div class="hero-footnote">
+                    <span class="tiny-star">✳</span>
+                    No pressure. Just progress.
+                </div>
+            </div>
+
+            <div class="hero-visual" aria-hidden="true">
+                <div class="visual-topline">
+                    <span>THINK DIFFERENT.</span>
+                    <span>01 — ∞</span>
+                </div>
+
+                <div class="visual-circle circle-back"></div>
+                <div class="visual-circle circle-mid"></div>
+                <div class="visual-circle circle-front">?</div>
+
+                <div class="floating-card floating-card-one">
+                    <span class="floating-icon purple">✳</span>
+                    <span>
+                        <strong>Stay curious</strong>
+                        <small>Every day counts</small>
+                    </span>
+                </div>
+
+                <div class="floating-card floating-card-two">
+                    <span class="floating-check">✓</span>
+                    <span>
+                        <strong>Mind unlocked</strong>
+                        <small>One step at a time</small>
+                    </span>
+                </div>
+
+                <div class="visual-bottomline">
+                    <span>LEARN SOMETHING NEW</span>
+                    <span>✳</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATEGORIES -->
+        <section class="categories-section" id="categories">
+            <div class="section-heading">
+                <div>
+                    <p class="section-label">PICK YOUR PLAYGROUND</p>
+                    <h2>What are we learning <span>today?</span></h2>
+                    <p class="section-description">
+                        Choose a subject and put your knowledge to the test.
+                    </p>
+                </div>
+
+                <div class="category-counter">
+                    <span class="counter-number">{{ categories|length|stringformat:"02d" }}</span>
+                    <span class="counter-label">AVAILABLE<br>TOPICS</span>
+                </div>
+            </div>
+
+            <div class="category-grid">
+
+                {% for category in categories %}
+
+                <a
+                    href="{% url 'quiz:start_quiz' category.id %}"
+                    class="category-card
+                    {% if category.name == 'Python' %}card-python
+                    {% elif category.name == 'HTML & CSS' %}card-html
+                    {% elif category.name == 'JavaScript' %}card-js
+                    {% else %}card-gk{% endif %}"
+                >
+                    <div class="card-top">
+                        <span class="card-number">
+                            {{ forloop.counter|stringformat:"02d" }} / QUIZ
+                        </span>
+
+                        <span class="difficulty">
+                            {{ category.difficulty|default:"ALL LEVELS" }}
+                        </span>
+                    </div>
+
+                    <div class="category-art">
+                        {% if category.name == "Python" %}
+                            <span class="art-letter">Py</span>
+                            <span class="art-spark">✳</span>
+                            <span class="art-orbit"></span>
+
+                        {% elif category.name == "HTML & CSS" %}
+                            <span class="html-bracket">&lt;/&gt;</span>
+                            <span class="art-square"></span>
+                            <span class="art-dot"></span>
+
+                        {% elif category.name == "JavaScript" %}
+                            <span class="js-letter">JS</span>
+                            <span class="js-sun"></span>
+                            <span class="js-star">✳</span>
+
+                        {% else %}
+                            <span class="gk-globe">◎</span>
+                            <span class="gk-star star-one">✳</span>
+                            <span class="gk-star star-two">✦</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="category-content">
+                        <p class="category-kicker">
+                            {% if category.name == "Python" %}
+                                THE LOGIC LAB
+                            {% elif category.name == "HTML & CSS" %}
+                                THE WEB STUDIO
+                            {% elif category.name == "JavaScript" %}
+                                THE LOGIC GAME
+                            {% else %}
+                                THE BIG PICTURE
+                            {% endif %}
+                        </p>
+
+                        <h3>{{ category.name }}</h3>
+
+                        <p class="category-description">
+                            {% if category.name == "Python" %}
+                                Test your Python knowledge, from basic syntax to core programming concepts.
+                            {% elif category.name == "HTML & CSS" %}
+                                Explore HTML elements, CSS styling and the foundations of web design.
+                            {% elif category.name == "JavaScript" %}
+                                Challenge yourself with variables, functions and programming logic.
+                            {% else %}
+                                Discover facts about science, history, the world and everyday life.
+                            {% endif %}
+                        </p>
+                    </div>
+
+                    <div class="card-stats">
+                        <span>▤ {{ category.questions|length }} Questions</span>
+                        <span>✳ Quiz</span>
+                    </div>
+
+                    <div class="card-footer">
+                        <span>Start Quiz</span>
+                        <span class="card-link">↗</span>
+                    </div>
+                </a>
+
+                {% empty %}
+
+                <div class="empty-state">
+                    <h3>No quizzes available yet.</h3>
+                    <p>Add categories and questions to your quiz JSON file.</p>
+                </div>
+
+                {% endfor %}
+
+            </div>
+        </section>
+
+        <!-- BOTTOM BANNER -->
+        <section class="learning-banner" id="how-to-play">
+            <div class="banner-icon">✳</div>
+
+            <div class="banner-copy">
+                <p class="section-label">YOUR NEXT SMALL WIN</p>
+                <h3>Curiosity looks good on you.</h3>
+                <p>Choose a topic. Answer the questions. Learn something new.</p>
+            </div>
+
+            <a href="#categories" class="banner-link">
+                Let's begin <span>→</span>
+            </a>
+        </section>
+
+        <footer class="page-footer">
+            <span>QUIZZY<span class="footer-dot">.</span> MADE FOR CURIOUS MINDS.</span>
+            <span>KEEP LEARNING. KEEP GROWING. <b>✳</b></span>
+        </footer>
+
+    </main>
+</div>
+</body>
+</html>

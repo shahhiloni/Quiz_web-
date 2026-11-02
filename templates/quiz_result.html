@@ -1,0 +1,40 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Result | Quizzy</title>
+    <link rel="stylesheet" href="{% static 'css/quiz.css' %}">
+</head>
+<body>
+<main style="max-width:850px;margin:40px auto;padding:20px;">
+    <p>QUIZ COMPLETED</p>
+    <h1>{{ category.name }} — Your Result</h1>
+
+    <h2 style="margin:20px 0;">Score: {{ score }} points</h2>
+
+    {% for answer in answers %}
+    <section style="padding:18px;margin:15px 0;border:1px solid #ccc;border-radius:10px;">
+        <h3>{{ forloop.counter }}. {{ answer.question }}</h3>
+
+        {% if answer.is_correct %}
+            <p style="color:green;">Correct answer!</p>
+        {% else %}
+            <p style="color:#c44;">Incorrect answer</p>
+        {% endif %}
+
+        <p>Your answer: {{ answer.selected|default:"Not answered" }}</p>
+        <p>Correct answer: {{ answer.correct_answer }}</p>
+
+        {% if answer.explanation %}
+        <p>{{ answer.explanation }}</p>
+        {% endif %}
+    </section>
+    {% endfor %}
+
+    <a href="{% url 'quiz:categories' %}">← Try another quiz</a>
+</main>
+</body>
+</html>

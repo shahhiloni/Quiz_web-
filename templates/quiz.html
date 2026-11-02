@@ -1,0 +1,47 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ category.name }} Quiz | Quizzy</title>
+    <link rel="stylesheet" href="{% static 'css/quiz.css' %}">
+</head>
+<body>
+<main style="max-width:850px;margin:40px auto;padding:20px;">
+    <a href="{% url 'quiz:categories' %}">← Back to categories</a>
+
+    <h1 style="margin:25px 0 8px;">{{ category.name }} Quiz</h1>
+    <p>Choose one answer for each question.</p>
+
+    <form method="post">
+        {% csrf_token %}
+
+        {% for question in questions %}
+        <fieldset style="margin:25px 0;padding:22px;border:1px solid #ccc;border-radius:12px;">
+            <legend><strong>Question {{ forloop.counter }}</strong></legend>
+
+            <h3 style="margin:12px 0 18px;">{{ question.question }}</h3>
+
+            {% for option in question.options %}
+            <label style="display:block;padding:12px;margin:8px 0;border:1px solid #ddd;border-radius:8px;cursor:pointer;">
+                <input
+                    type="radio"
+                    name="question_{{ question.id }}"
+                    value="{{ option }}"
+                    required
+                >
+                {{ option }}
+            </label>
+            {% endfor %}
+        </fieldset>
+        {% endfor %}
+
+        <button type="submit" style="padding:13px 24px;cursor:pointer;">
+            Submit Answers →
+        </button>
+    </form>
+</main>
+</body>
+</html>

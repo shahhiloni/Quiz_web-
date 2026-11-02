@@ -1,0 +1,148 @@
+{
+  "quiz_title": "Brain Challenge",
+  "categories": [
+    {
+      "id": 1,
+      "name": "Python",
+      "icon": "python",
+      "difficulty": "Easy",
+      "questions": [
+        {
+          "id": 101,
+          "question": "Which keyword is used to define a function in Python?",
+          "options": ["function", "def", "fun", "define"],
+          "correct_answer": "def",
+          "explanation": "The def keyword is used to define a function in Python.",
+          "points": 10
+        },
+        {
+          "id": 102,
+          "question": "Which data type stores True or False?",
+          "options": ["int", "str", "bool", "list"],
+          "correct_answer": "bool",
+          "explanation": "The bool data type represents True or False values.",
+          "points": 10
+        },
+        {
+          "id": 103,
+          "question": "What is the output of print(2 ** 3)?",
+          "options": ["6", "8", "9", "5"],
+          "correct_answer": "8",
+          "explanation": "The ** operator performs exponentiation. 2 raised to 3 is 8.",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "HTML & CSS",
+      "icon": "code",
+      "difficulty": "Easy",
+      "questions": [
+        {
+          "id": 201,
+          "question": "What does HTML stand for?",
+          "options": [
+            "Hyper Text Markup Language",
+            "High Text Machine Language",
+            "Hyper Transfer Main Language",
+            "Home Tool Markup Language"
+          ],
+          "correct_answer": "Hyper Text Markup Language",
+          "explanation": "HTML stands for HyperText Markup Language.",
+          "points": 10
+        },
+        {
+          "id": 202,
+          "question": "Which CSS property changes text color?",
+          "options": [
+            "background",
+            "font-style",
+            "color",
+            "text-decoration"
+          ],
+          "correct_answer": "color",
+          "explanation": "The color property sets the foreground color of text.",
+          "points": 10
+        },
+        {
+          "id": 203,
+          "question": "Which HTML tag creates a hyperlink?",
+          "options": ["<link>", "<a>", "<href>", "<url>"],
+          "correct_answer": "<a>",
+          "explanation": "The anchor tag <a> creates hyperlinks using the href attribute.",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "JavaScript",
+      "icon": "javascript",
+      "difficulty": "Medium",
+      "questions": [
+        {
+          "id": 301,
+          "question": "Which keyword declares a block-scoped variable that can be reassigned?",
+          "options": ["const", "let", "static", "define"],
+          "correct_answer": "let",
+          "explanation": "The let keyword declares a block-scoped variable that can be reassigned.",
+          "points": 20
+        },
+        {
+          "id": 302,
+          "question": "Which method converts a JSON string into a JavaScript object?",
+          "options": [
+            "JSON.stringify()",
+            "JSON.parse()",
+            "JSON.convert()",
+            "JSON.object()"
+          ],
+          "correct_answer": "JSON.parse()",
+          "explanation": "JSON.parse() parses a valid JSON string into a JavaScript value.",
+          "points": 20
+        },
+        {
+          "id": 303,
+          "question": "Which operator checks strict equality in JavaScript?",
+          "options": ["=", "==", "===", "!="],
+          "correct_answer": "===",
+          "explanation": "The === operator compares values without type coercion.",
+          "points": 20
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "General Knowledge",
+      "icon": "globe",
+      "difficulty": "Easy",
+      "questions": [
+        {
+          "id": 401,
+          "question": "What is the capital of Japan?",
+          "options": ["Seoul", "Beijing", "Tokyo", "Bangkok"],
+          "correct_answer": "Tokyo",
+          "explanation": "Tokyo is the capital of Japan.",
+          "points": 10
+        },
+        {
+          "id": 402,
+          "question": "Which planet is known as the Red Planet?",
+          "options": ["Venus", "Mars", "Jupiter", "Mercury"],
+          "correct_answer": "Mars",
+          "explanation": "Mars appears reddish due to iron oxide on its surface.",
+          "points": 10
+        },
+        {
+          "id": 403,
+          "question": "How many sides does a hexagon have?",
+          "options": ["5", "6", "7", "8"],
+          "correct_answer": "6",
+          "explanation": "A hexagon is a polygon with six sides.",
+          "points": 10
+        }
+      ]
+    }
+  ]
+}
